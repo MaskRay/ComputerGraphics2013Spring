@@ -1,0 +1,7 @@
+option  "nthreads"             t  "number of threads"                  double  default="0"           optional
+option  "outfile"              o  "output filename"                    string                        optional
+option  "gamma-r"              -  "gamma R"                            double  default="1"           optional
+option  "gamma-g"              -  "gamma G"                            double  default="1"           optional
+option  "gamma-b"              -  "gamma B"                            double  default="1"           optional
+option  "mode"                 m  "mode"                               string  default="ray-tracing" optional
+option  "samples"              s  "samples"                            int     default="1"           optional
