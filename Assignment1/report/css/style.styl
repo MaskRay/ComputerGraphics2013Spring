@@ -1,0 +1,92 @@
+@import 'nib'
+
+body
+  background hsl(0, 0, 76%)
+  font-size 24px
+
+table
+  border-collapse collapse
+
+th, td
+  border 1px solid black
+  padding 8px
+
+ul
+  padding 0
+  margin 0
+
+a
+  text-decoration none
+
+nav
+  position fixed
+  z-index 3
+  top 0
+  left 0
+  right 0
+  padding 10px
+  font-family Helvetica, sans-serif
+  font-size 20px
+  box-shadow 0 1px 10px hsla(0, 0, 0, .2)
+  background hsla(115, 57%, 10%, .3)
+  color white
+  ul
+    float right
+    list-style-type none
+    li
+      display inline-block
+      a
+        opacity 0.6
+        color inherit
+        &:hover, &:active
+          opacity 1
+      &:not(:first-child):before
+        content '/'
+        margin 0 .6em
+  &::after
+    clearfix()
+
+h1
+  margin-top 50px
+
+section
+  position relative
+  width 960px
+  margin auto
+  background white
+  border-radius 8px
+  padding 8px 20px
+  margin-top 30px
+
+  &::after
+    content ''
+    position absolute
+    top 50%
+    right 10px
+    bottom 12px
+    width 50%
+    background hsl(0, 0, 40%)
+    box-shadow 0 12px 10px hsl(0, 0, 40%)
+    transform rotate(1deg)
+    z-index -1
+
+h1, .class, .author, .student-number
+  text-align center
+
+h2
+  counter-reset ex
+
+h3::before
+  content counter(ex) '. '
+  counter-increment ex
+
+pre > code
+  font-size 18px
+  white-space pre-wrap
+  border-radius .5em
+
+.solution
+  border-top 1px solid black
+
+.src
+  border-top 1px dotted black

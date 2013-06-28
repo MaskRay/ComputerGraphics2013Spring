@@ -1,0 +1,74 @@
+!!! 5
+html
+  head
+    - title = '计算机图形学基础第一次习题课作业'
+    title= title
+    meta(name='author', content='MaskRay')
+    link(rel='stylesheet', href='css/style.css')
+    link(rel='stylesheet', href='vendor/highlight/tomorrow-bright.css')
+  body
+    nav
+      ul#nav
+
+    .content
+      h1= title
+
+      section#rasterization
+        h2 Rasterization
+
+        h3 Bresenham's line algorithm
+        p
+          code src/Rasterization.cc#Context::plotLine
+        p 将斜率的各种情况统一处理了
+
+        h3 Bresenham's circle algorithm
+        p
+          code src/Rasterization.cc#Context::plotCircle
+        p 利用对称性只计算了八分之一
+
+      section#flood-fill
+        h2 Flood fill
+
+        h3 Flood fill algorithm
+        p
+          code src/Rasterization.cc#Context::floodFill
+
+        h3 Scanline fill algorithm
+        p
+          code src/Rasterization.cc#Context::scanlineFill
+
+      section#polygon-fill
+        h2 Polygon fill
+
+        h3 Scanline polygon fill algorithm
+        p
+          code src/Rasterization.cc#Context::fillPolygon
+        p 使用active edge list加速
+
+      section#clipping
+        h2 Clipping
+
+        h3 Cohen-Sutherland algorithm
+        p
+          code src/Clipping.cc#LineClipping::cohenSutherland
+
+        h3 梁友栋-Barsky algorithm
+        p
+          code src/Clipping.cc#LineClipping::liangBarsky
+
+        h3 Midpoint subdivision algorithm
+        p
+          code src/Clipping.cc#LineClipping::midpointSubdivision
+
+        h3 Sutherland-Hodgman algorithm
+        p
+          code src/Clipping.cc#PolygonClipping::sutherlandHodgman
+
+    script(src='vendor/highlight/highlight.pack.js')
+    script(src='vendor/jquery-1.9.1.min.js')
+    :coffeescript
+      $('pre > code').each (_, e) -> hljs.highlightBlock(e)
+      $('section').map (_, e) ->
+        $('#nav').append $('<li>').append $('<a>').attr('href', "##{e.id}").text(e.firstChild.textContent)
+      $('code').each (_, e) ->
+        $(e).wrap $('<a>').attr 'href', "../#{$(e).text().match(/.*(?=#)/)[0]}"
